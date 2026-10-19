@@ -59,33 +59,50 @@ Repository.
 
 ## Installation (Raspberry Pi)
 
-```bash
-git clone https://github.com/Booman2-prog/SimHeizstabEVCC.git ~/heizstab-repo
-mkdir -p ~/heizstabsimulator
-cp ~/heizstab-repo/Install/{control.py,webui.py,heizstab.service} ~/heizstabsimulator/
-cp ~/heizstab-repo/Install/config.example.json ~/heizstabsimulator/config.json
-sudo apt install python3-flask python3-requests
-```
+Das Programm l?uft direkt aus dem geklonten Repository. `config.json`, `config.json.bak`
+und `evcc_state.json` liegen zwar in `Install/`, sind aber nicht im Repository ? `git pull`
+?berschreibt sie daher nie.
 
-`config.json` anpassen (oder später über die Weboberfläche), dann den Dienst einrichten:
+### Erstinstallation
 
 ```bash
-sudo cp ~/heizstabsimulator/heizstab.service /etc/systemd/system/
+sudo apt install git python3-flask python3-requests
+cd ~
+git clone https://github.com/Booman2-prog/SimHeizstabEVCC.git
+cd ~/SimHeizstabEVCC/Install
+cp config.example.json config.json      # anpassen, oder sp?ter ?ber die Weboberfl?che
+sudo cp heizstab.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now heizstab
-systemctl status heizstab        # muss "active (running)" zeigen
+systemctl status heizstab               # muss "active (running)" zeigen
 ```
 
-Der Dienst geht von Benutzer `homeserver` und Ordner `/home/homeserver/heizstabsimulator` aus –
+Der Dienst geht von Benutzer `homeserver` und Ordner `/home/homeserver/SimHeizstabEVCC` aus ?
 bei Bedarf in `heizstab.service` anpassen.
+
+### Update
+
+```bash
+cd ~/SimHeizstabEVCC
+git pull
+sudo systemctl restart heizstab
+```
+
+Nur falls sich `Install/heizstab.service` ge?ndert hat, zus?tzlich vor dem Neustart:
+
+```bash
+sudo cp Install/heizstab.service /etc/systemd/system/ && sudo systemctl daemon-reload
+```
+
+### Bedienung
 
 | Aufgabe | Befehl |
 |---|---|
 | Live-Ausgabe | `journalctl -u heizstab -f` |
-| Neu starten (z. B. nach Update) | `sudo systemctl restart heizstab` |
+| Neu starten | `sudo systemctl restart heizstab` |
 | Stoppen | `sudo systemctl stop heizstab` |
 
-Nicht zusätzlich von Hand `python control.py` starten – sonst ist Port 5000 doppelt belegt.
+Nicht zus?tzlich von Hand `python control.py` starten ? sonst ist Port 5000 doppelt belegt.
 
 ## evcc einrichten
 

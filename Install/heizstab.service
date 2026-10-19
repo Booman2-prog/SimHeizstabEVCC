@@ -7,8 +7,11 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=homeserver
-WorkingDirectory=/home/homeserver/heizstabsimulator
-ExecStart=/usr/bin/python3 /home/homeserver/heizstabsimulator/control.py
+# Laeuft direkt aus dem geklonten Repository - Update per "git pull".
+# config.json und evcc_state.json liegen im selben Ordner, sind aber nicht
+# im Repository und werden von "git pull" daher nie ueberschrieben.
+WorkingDirectory=/home/homeserver/SimHeizstabEVCC/Install
+ExecStart=/usr/bin/python3 /home/homeserver/SimHeizstabEVCC/Install/control.py
 # bei Absturz oder Fehler nach 5 s automatisch neu starten
 Restart=always
 RestartSec=5
