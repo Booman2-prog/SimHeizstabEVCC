@@ -1,0 +1,6 @@
+flask
+requests
+# optional, nur fuer NAS-Logging per SMB ("protokoll": "smb"); FTPS braucht nichts zusaetzlich
+# smbprotocol
+# nur fuer die Tests
+pytest

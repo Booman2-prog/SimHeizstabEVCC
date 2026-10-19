@@ -1,0 +1,45 @@
+# Ausschnitt fuer die evcc.yaml - nur Charger und Ladepunkt des Heizstabs.
+# control.py laeuft auf demselben Pi wie evcc, daher 127.0.0.1.
+
+chargers:
+  - name: heizstab
+    type: custom
+    features: ["heating", "integrateddevice"]   # Heizstab: kein Fahrzeug, Anzeige in °C
+    icon: waterheater
+    status:
+      source: http
+      uri: http://127.0.0.1:5000/status
+      jq: .status
+      cache: 1s
+    enabled:
+      source: http
+      uri: http://127.0.0.1:5000/status
+      jq: .enabled
+      cache: 1s
+    enable:
+      source: http
+      uri: http://127.0.0.1:5000/enable?enable={{.enable}}
+    maxcurrent:                                  # Pflicht: ganze Ampere
+      source: http
+      uri: http://127.0.0.1:5000/setcurrent?ampere={{.maxcurrent}}
+    maxcurrentmillis:                            # optional: Ampere mit Nachkommastellen
+      source: http
+      uri: http://127.0.0.1:5000/setcurrent?ampere={{.maxcurrentmillis}}
+    power:
+      source: http
+      uri: http://127.0.0.1:5000/status
+      jq: .power
+      cache: 1s
+    temp:
+      source: http
+      uri: http://127.0.0.1:5000/status
+      jq: .temp
+      cache: 5s
+
+loadpoints:
+  - title: Heizstab
+    charger: heizstab
+    mode: smart
+    phases: 3
+    mincurrent: 2      # Stufe 1 braucht 1,74 A (1.200 W); mit Kommawerten ggf. 1.8
+    maxcurrent: 5      # 5 A x 230 V x 3 = 3.450 W -> Stufe 3

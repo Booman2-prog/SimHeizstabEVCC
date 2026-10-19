@@ -1,0 +1,48 @@
+{
+    "esp_heizstab_ip": "10.0.10.98",
+    "esp_user": "admin",
+    "esp_password": "TASMOTA-PASSWORT",
+    "esp_timeout": 3,
+    "esp_versuche": 3,
+
+    "relais_stufe_1": [4],
+    "relais_stufe_2": [3, 4],
+    "relais_stufe_3": [2, 3, 4],
+    "leistung_pro_stufe": 1000,
+    "spannung": 230,
+    "phasen": 3,
+
+    "puffer_einschalten": 200,
+    "abschalt_unter_s1": 1000,
+    "abschalt_unter_s2": 2000,
+    "abschalt_unter_s3": 3000,
+
+    "zeit_bis_zuschalten": 60,
+    "zeit_bis_abschalten": 10,
+    "mindest_laufzeit": 300,
+    "evcc_timeout_seconds": 300,
+
+    "use_home_assistant": true,
+    "ha_url": "http://10.10.10.2:8123",
+    "ha_token": "HOME-ASSISTANT-TOKEN",
+    "ha_sensor_entity": "sensor.dein_temperatursensor",
+    "ha_timeout": 5,
+    "tasmota_thr316d_ip": "",
+
+    "log_level": "INFO",
+    "log_max_mb": 1,
+    "log_anzahl_dateien": 3,
+    "log_nas": {
+        "protokoll": "ftps",
+        "server": "10.10.10.2",
+        "port": 21,
+        "ordner": "/NAS-Nacht/EVCC-Logging",
+        "datei": "heizstab.log",
+        "benutzer": "NAS-BENUTZER",
+        "passwort": "NAS-PASSWORT",
+        "neuer_versuch_sekunden": 300
+    },
+
+    "web_benutzer": "admin",
+    "web_passwort": ""
+}

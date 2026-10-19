@@ -1,0 +1,28 @@
+# Nur das eigentliche Projekt versionieren (Whitelist).
+# Alles andere - insbesondere Dateien mit Passwoertern/Tokens - bleibt lokal.
+/*
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/evcc.example.yaml
+!/test_logging.py
+!/test_rechnung.py
+!/test_webui.py
+!/aktuell/
+
+/aktuell/*
+!/aktuell/control.py
+!/aktuell/webui.py
+!/aktuell/heizstab.service
+!/aktuell/config.example.json
+!/aktuell/test_control.py
+
+# echte Konfiguration und Laufzeitdaten NIE einchecken
+config.json
+config.json.bak
+config.json.tmp
+evcc_state.json
+*.log
+__pycache__/
+.pytest_cache/
+!/.gitattributes

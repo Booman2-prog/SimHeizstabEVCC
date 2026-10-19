@@ -1,0 +1,19 @@
+[Unit]
+Description=Heizstab-Steuerung fuer evcc
+# erst starten, wenn das Netzwerk steht (ESP, NAS, Home Assistant)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=homeserver
+WorkingDirectory=/home/homeserver/heizstabsimulator
+ExecStart=/usr/bin/python3 /home/homeserver/heizstabsimulator/control.py
+# bei Absturz oder Fehler nach 5 s automatisch neu starten
+Restart=always
+RestartSec=5
+# Ausgaben sofort ins Systemprotokoll (journalctl), nicht gepuffert
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
