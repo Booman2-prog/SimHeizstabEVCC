@@ -1,4 +1,4 @@
-"""Tests fuer die Weboberflaeche (aktuell/webui.py) - arbeitet nur mit einer Kopie der Config."""
+"""Tests fuer die Weboberflaeche (Install/webui.py) - arbeitet nur mit einer Kopie der Config."""
 import base64
 import json
 import os
@@ -9,7 +9,6 @@ import time
 import pytest
 from flask import Flask
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "aktuell"))
 import webui  # noqa: E402
 
 BASE = {

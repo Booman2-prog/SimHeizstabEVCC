@@ -5,7 +5,6 @@ import time
 
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "aktuell"))
 import control  # noqa: E402
 
 CFG = {"leistung_pro_stufe": 1000, "puffer_einschalten": 200,

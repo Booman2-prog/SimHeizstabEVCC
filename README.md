@@ -46,23 +46,24 @@ evcc ──HTTP──> control.py ──HTTP (Tasmota)──> ESP-01 ──> Rel
 
 | Datei | Inhalt |
 |---|---|
-| `aktuell/control.py` | Steuerung, HTTP-Schnittstelle für evcc, Logging |
-| `aktuell/webui.py` | Weboberfläche zum Bearbeiten der Konfiguration |
-| `aktuell/config.example.json` | Vorlage für `config.json` |
-| `aktuell/heizstab.service` | systemd-Dienst für den Autostart |
-| `evcc.example.yaml` | Charger- und Ladepunkt-Ausschnitt für die `evcc.yaml` |
-| `test_*.py`, `aktuell/test_control.py` | Tests (laufen ohne echte Hardware) |
+| `Install/control.py` | Steuerung, HTTP-Schnittstelle f?r evcc, Logging |
+| `Install/webui.py` | Weboberfl?che zum Bearbeiten der Konfiguration |
+| `Install/config.example.json` | Vorlage f?r `config.json` |
+| `Install/heizstab.service` | systemd-Dienst f?r den Autostart |
+| `evcc.example.yaml` | Charger- und Ladepunkt-Ausschnitt f?r die `evcc.yaml` |
+| `tests/` | Tests (laufen ohne echte Hardware) |
 
+Der Ordner `Install/` enth?lt genau die Dateien, die auf den Pi geh?ren.
 `config.json` (mit Passwörtern), Logdateien und `evcc_state.json` sind bewusst **nicht** im
 Repository.
 
 ## Installation (Raspberry Pi)
 
 ```bash
-git clone <REPO-URL> ~/heizstab-repo
+git clone https://github.com/Booman2-prog/SimHeizstabEVCC.git ~/heizstab-repo
 mkdir -p ~/heizstabsimulator
-cp ~/heizstab-repo/aktuell/{control.py,webui.py,heizstab.service} ~/heizstabsimulator/
-cp ~/heizstab-repo/aktuell/config.example.json ~/heizstabsimulator/config.json
+cp ~/heizstab-repo/Install/{control.py,webui.py,heizstab.service} ~/heizstabsimulator/
+cp ~/heizstab-repo/Install/config.example.json ~/heizstabsimulator/config.json
 sudo apt install python3-flask python3-requests
 ```
 
@@ -180,7 +181,7 @@ Tipp: auf dem NAS einen eigenen Benutzer anlegen, der nur in den Log-Ordner schr
 
 ```bash
 pip install -r requirements.txt
-python -m pytest
+python -m pytest tests
 ```
 
 Die Tests simulieren ESP, NAS (FTPS/SMB) und Konfiguration – keine Hardware nötig, die echte

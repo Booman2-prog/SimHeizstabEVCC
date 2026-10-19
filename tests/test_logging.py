@@ -1,4 +1,4 @@
-"""Tests fuer das NAS-Logging in aktuell/control.py (mit simuliertem SMB-Server)."""
+"""Tests fuer das NAS-Logging in Install/control.py (mit simuliertem SMB-Server)."""
 import io
 import logging
 import os
@@ -7,7 +7,6 @@ import time
 
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "aktuell"))
 import control  # noqa: E402
 
 
