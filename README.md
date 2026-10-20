@@ -214,3 +214,13 @@ Die Tests simulieren ESP, NAS (FTPS/SMB) und Konfiguration – keine Hardware n�
 | „Port 5000 belegt" | Programm läuft schon (Dienst) – nicht zusätzlich von Hand starten |
 | evcc „aktiv", aber 0 W | `mincurrent` zu klein (unter Einschaltschwelle Stufe 1) |
 | Keine Logdatei auf dem NAS | Konsole zeigt den Grund; Zugangsdaten, IP, Ordner prüfen |
+
+## Lizenz und Haftung
+
+[MIT-Lizenz](LICENSE) ? frei nutzbar, ver?nderbar und weitergebbar, solange der Lizenzhinweis
+erhalten bleibt.
+
+Die Software wird ohne Gew?hr bereitgestellt. Sie schaltet elektrische Lasten (230 V) ?
+Installation und Anschluss des Heizstabs geh?ren in die H?nde einer Elektrofachkraft, und der
+Heizstab muss ?ber einen eigenen Sicherheitstemperaturbegrenzer verf?gen. Nutzung auf eigene
+Verantwortung.
